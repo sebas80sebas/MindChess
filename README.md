@@ -117,7 +117,7 @@ MindChess/
 │   ├── chessground.css    # Chessground base styles
 │   ├── chessgroundbase.css   # Chessground theme base
 │   ├── chessgroundbrown.css  # Brown chess board theme
-│   └── mindchess.png      # Application logo
+│   └── mindchess.jpg      # Application logo
 │
 ├── server.js              # Express server configuration
 ├── package.json           # Project dependencies and scripts
