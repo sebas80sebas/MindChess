@@ -1,6 +1,6 @@
 # 🎙️ MindChess - Voice-Controlled Blind Chess
 
-![MindChess Logo](public/mindchess.png)
+![MindChess Logo](public/mindchess.jpg)
 
 > **An innovative accessibility-focused chess application that enables players to play chess entirely through voice commands, designed specifically for blind and visually impaired users.**
 
