@@ -1,6 +1,6 @@
-# 🎙️ Phantom Moves - Voice-Controlled Blind Chess
+# 🎙️ MindChess - Voice-Controlled Blind Chess
 
-![Phantom Moves Logo](public/phantom-moves.png)
+![MindChess Logo](public/mindchess.png)
 
 > **An innovative accessibility-focused chess application that enables players to play chess entirely through voice commands, designed specifically for blind and visually impaired users.**
 
@@ -30,11 +30,11 @@
 
 ## 📋 Overview
 
-**Phantom Moves** is a groundbreaking web application that makes chess truly accessible to everyone by eliminating visual dependency entirely. Using the Web Speech API, players can make moves, hear game updates, and enjoy a complete chess experience through voice alone.
+**MindChess** is a groundbreaking web application that makes chess truly accessible to everyone by eliminating visual dependency entirely. Using the Web Speech API, players can make moves, hear game updates, and enjoy a complete chess experience through voice alone.
 
-### Why Phantom Moves?
+### Why MindChess?
 
-Traditional digital chess platforms rely heavily on visual interaction, creating barriers for blind and visually impaired players. Phantom Moves removes these barriers by providing:
+Traditional digital chess platforms rely heavily on visual interaction, creating barriers for blind and visually impaired players. MindChess removes these barriers by providing:
 
 - 🎤 **Complete voice control** - No mouse or screen needed
 - 🔊 **Real-time audio feedback** - Every move is announced
@@ -102,7 +102,7 @@ Traditional digital chess platforms rely heavily on visual interaction, creating
 ## 📁 Project Structure
 
 ```
-Phantom-Moves/
+MindChess/
 │
 ├── node_modules/          # Dependencies
 │   ├── chess.js/          # Chess logic library
@@ -117,7 +117,7 @@ Phantom-Moves/
 │   ├── chessground.css    # Chessground base styles
 │   ├── chessgroundbase.css   # Chessground theme base
 │   ├── chessgroundbrown.css  # Brown chess board theme
-│   └── phantom-moves.png      # Application logo
+│   └── mindchess.png      # Application logo
 │
 ├── server.js              # Express server configuration
 ├── package.json           # Project dependencies and scripts
@@ -141,8 +141,8 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/sebas80sebas/Phantom-Moves.git
-   cd Phantom-Moves
+   git clone https://github.com/sebas80sebas/MindChess.git
+   cd MindChess
    ```
 
 2. **Install dependencies**
@@ -241,7 +241,7 @@ const PORT = 3001; // Change to any available port
    - Open `http://localhost:3000` in your browser
 
 2. **Welcome screen**
-   - You'll see the Phantom Moves welcome screen
+   - You'll see the MindChess welcome screen
    - Click "Start Game" button
 
 3. **Board setup**
@@ -395,7 +395,7 @@ We welcome contributions from the community! Whether you're fixing bugs, adding 
 
 1. **Fork the repository**
    ```bash
-   git clone https://github.com/sebas80sebas/Phantom-Moves.git
+   git clone https://github.com/sebas80sebas/MindChess.git
    ```
 
 2. **Create a feature branch**
@@ -470,6 +470,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - 🐙 GitHub: [@sebas80sebas](https://github.com/sebas80sebas)
 - 🔗 LinkedIn: [My LinkedIn](https://www.linkedin.com/in/iv%C3%A1n-sebasti%C3%A1n-loor-weir-386305271)
 
-**Project Repository:** [https://github.com/sebas80sebas/Phantom-Moves](https://github.com/sebas80sebas/Phantom-Moves)
+**Project Repository:** [https://github.com/sebas80sebas/MindChess](https://github.com/sebas80sebas/MindChess)
 
-**Phantom Moves** - Making chess accessible to everyone, one move at a time.
+**MindChess** - Making chess accessible to everyone, one move at a time.
