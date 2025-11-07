@@ -338,7 +338,7 @@ Chess is a universal game enjoyed by millions worldwide, but traditional digital
 
 ### Our Solution
 
-**Phantom Moves eliminates these barriers** by providing:
+**MindChess eliminates these barriers** by providing:
 
 - ✅ **Complete independence** - No visual or physical assistance needed
 - ✅ **Natural interaction** - Play using everyday language
@@ -355,7 +355,7 @@ Chess is a universal game enjoyed by millions worldwide, but traditional digital
 
 ### Accessibility Principles
 
-Phantom Moves follows these core principles:
+MindChess follows these core principles:
 
 1. **Perceivable** - Information communicated through audio
 2. **Operable** - Fully controllable via voice
