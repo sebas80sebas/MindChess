@@ -330,6 +330,7 @@ h1 {
    GAME BUTTONS
 ----------------------------*/
 #voiceButton,
+#repeatButton,
 #drawButton,
 #surrenderButton,
 #exitButton,
@@ -365,6 +366,16 @@ h1 {
     background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+#repeatButton {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+}
+
+#repeatButton:hover {
+    background: linear-gradient(135deg, #BA68C8 0%, #9C27B0 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
 }
 
 #voiceButton:disabled {

@@ -217,7 +217,8 @@ const voiceCommands = {
     'mover': 'move', 'mueve': 'move', 'a': 'to', 'come': 'takes', 'captura': 'takes',
     'enroque corto': 'O-O', 'enroque largo': 'O-O-O',
     'jaque': '+', 'jaque mate': '#', 'deshacer': 'undo', 'leer': 'read',
-    'rendirse': 'resignation', 'tablas': 'draw', 'empate': 'draw'
+    'rendirse': 'resignation', 'tablas': 'draw', 'empate': 'draw',
+    'repeat': 'repeat', 'repetir': 'repeat'
 };
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -733,6 +734,9 @@ function processVoiceCommand(command) {
                 `estos son los movimientos realizados: ${movesText}`;
             announceState({ color: game.turn(), san: readMsg });
         }
+        else if (normalized.includes('repeat')) {
+            handleRepeatLastMove();
+        }
         else {
             const errorMsg = currentLanguage === 'en-US' ? 
                 "Command not recognized" :
@@ -827,7 +831,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: "step-5", text: "To make a move, say the piece name and the destination square. For example: Move knight to e4." },
         { id: "step-6", text: "You can say the names of all pieces in English or Spanish, like Pawn, Rook, Knight, Bishop, Queen, or King." },
         { id: "step-7", text: "For special moves like castling, you can say: Castle kingside or Castle queenside. In Spanish: Enroque corto or Enroque largo." },
-        { id: "step-8", text: "Use the Read command to hear all moves made so far, or Undo to take back your last move." },
+        { id: "step-8", text: "Use the Read command to hear all moves made so far, Repeat to hear the last move again, or Undo to take back your last move." },
         { id: "step-9", text: "You can also offer a Draw or Resign from the current game using voice commands." },
         { id: "step-10", text: "To play: Select your time control, start the game, and activate voice recognition with the Speak button or V key." },
         { id: "step-11", text: "Speak your moves clearly. The timer will switch automatically. You can also drag pieces with your mouse!" },
@@ -942,6 +946,24 @@ confirmSurrender.addEventListener("click", () => {
 
 cancelSurrender.addEventListener("click", () => {
     surrenderConfirm.style.display = "none";
+});
+
+// Repeat button
+const repeatButton = document.getElementById("repeatButton");
+
+function handleRepeatLastMove() {
+    const history = game.history({ verbose: true });
+    if (history.length > 0) {
+        const lastMove = history[history.length - 1];
+        announceMove(lastMove);
+    } else {
+        const noMovesMsg = currentLanguage === 'en-US' ? "No moves yet" : "No hay movimientos realizados";
+        announceState({ color: 'w', san: noMovesMsg });
+    }
+}
+
+repeatButton.addEventListener("click", () => {
+    handleRepeatLastMove();
 });
 
 // Exit button
