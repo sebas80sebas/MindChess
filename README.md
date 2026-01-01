@@ -161,7 +161,7 @@ Before you begin, ensure you have the following installed:
 
 4. **Open in browser**
    ```
-   Navigate to: http://localhost:3000
+   Navigate to: http://localhost:4000
    ```
 
 5. **Allow microphone access**
@@ -176,11 +176,11 @@ Before you begin, ensure you have the following installed:
 
 **Port already in use?**
 ```bash
-# Kill process on port 3000
-lsof -ti:3000 | xargs kill -9
+# Kill process on port 4000
+lsof -ti:4000 | xargs kill -9
 
 # Or change the port in server.js
-const PORT = 3001; // Change to any available port
+const PORT = 4001; // Change to any available port
 ```
 
 **Microphone not working?**
@@ -238,7 +238,7 @@ const PORT = 3001; // Change to any available port
 ### Starting a Game
 
 1. **Launch the application**
-   - Open `http://localhost:3000` in your browser
+   - Open `http://localhost:4000` in your browser
 
 2. **Welcome screen**
    - You'll see the MindChess welcome screen

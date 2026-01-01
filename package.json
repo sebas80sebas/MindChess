@@ -1,4 +1,12 @@
 {
+  "name": "mindchess",
+  "version": "1.0.0",
+  "description": "Voice-controlled chess for blind and visually impaired users",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
   "dependencies": {
     "chess.js": "^1.1.0",
     "chessground": "^9.1.1",
