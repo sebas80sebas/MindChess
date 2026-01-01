@@ -157,7 +157,7 @@ function getBestMove(game) {
 function makeComputerMove() {
     if (game.isGameOver()) return;
     
-    // Add a small delay for realism
+    // Increased delay for better audio flow and realism
     setTimeout(() => {
         const move = getBestMove(game);
         if (move) {
@@ -179,7 +179,7 @@ function makeComputerMove() {
             
             console.log("[DEBUG] AI Move:", result.san);
         }
-    }, 500);
+    }, 1500);
 }
 
 // Timer functions
@@ -477,7 +477,6 @@ function announceMove(move) {
             utterance.voice = preferredVoice;
         }
         
-        synth.cancel();
         synth.speak(utterance);
     }
 }
@@ -517,7 +516,6 @@ function announceState(move) {
             utterance.voice = preferredVoice;
         }
         
-        synth.cancel();
         synth.speak(utterance);
     }
 }
