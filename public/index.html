@@ -11,8 +11,10 @@
   <link rel="icon" type="image/png" href="favicon.png" />
 </head>
 <body>
-  <h1>MindChess</h1>
-  <h2>Speak, Move & They'll Move.</h2>
+  <header id="main-header">
+    <h1>MindChess</h1>
+    <h2>Speak, Move & They'll Move.</h2>
+  </header>
   
   <!-- Start screen -->
   <div id="start-screen">
@@ -198,6 +200,16 @@
 
 <!-- Main board container -->
 <div id="container" style="display: none;">
+  <div id="game-controls">
+    <button id="voiceButton" disabled>Speak</button>
+    <button id="repeatButton">Repeat Move</button>
+    <button id="readButton">Read Moves</button>
+    <button id="undoButton">Undo Move</button>
+    <button id="drawButton">Request Draw</button>
+    <button id="surrenderButton">Resign</button> 
+    <button id="exitButton">Exit</button> 
+  </div>
+
   <div id="board-container">
     <!-- Timer for Black (top) -->
     <div id="timer-black" class="timer">
@@ -214,13 +226,6 @@
     </div>
     
     <div id="status">Waiting...</div>
-    <button id="voiceButton" disabled>Speak</button>
-    <button id="repeatButton">Repeat Move</button>
-    <button id="readButton">Read Moves</button>
-    <button id="undoButton">Undo Move</button>
-    <button id="drawButton">Request Draw</button>
-    <button id="surrenderButton">Resign</button> 
-    <button id="exitButton">Exit</button> 
   </div>
   <div id="info-container">
     <h2>Moves</h2>

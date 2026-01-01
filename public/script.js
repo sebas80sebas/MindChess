@@ -769,6 +769,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener('click', () => {
         startScreen.style.display = "none";
         container.style.display = "flex";
+        document.getElementById('main-header').classList.add('minimized');
         
         resetGame();
         updateTimerDisplay();
@@ -860,6 +861,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tutorialButton.addEventListener('click', () => {
         startScreen.style.display = "none";
         tutorialScreen.style.display = "block";
+        document.getElementById('main-header').classList.add('minimized');
         currentStepIndex = 0;
         updateTutorialStep();
     });
@@ -868,6 +870,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tutorialSpeechSynth.cancel();
         tutorialScreen.style.display = "none";
         startScreen.style.display = "flex";
+        document.getElementById('main-header').classList.remove('minimized');
     });
 
     prevPage.addEventListener('click', () => {
@@ -1003,6 +1006,7 @@ confirmExit.addEventListener("click", () => {
     stopTimer();
     container.style.display = "none";
     startScreen.style.display = "flex";
+    document.getElementById('main-header').classList.remove('minimized');
     cg.set({ movable: { color: null, dests: new Map() } });
 });
 
