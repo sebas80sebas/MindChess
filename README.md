@@ -73,7 +73,7 @@ Traditional digital chess platforms rely heavily on visual interaction, creating
 **Try it yourself:**
 1. Clone the repository
 2. Run `npm install && npm start`
-3. Navigate to `http://localhost:3000`
+3. Navigate to `http://localhost:4000`
 4. Allow microphone access
 5. Start playing with voice commands!
 
