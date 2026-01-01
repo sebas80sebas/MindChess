@@ -30,7 +30,7 @@ app.get("/chessgroundbase.css", (req, res) => {
     res.sendFile(path.join(__dirname, "node_modules/chessground/dist/chessgroundbase.css"));
 });
 
-const PORT = 3000;
+const PORT = 4000;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
