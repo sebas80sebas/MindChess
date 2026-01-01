@@ -33,247 +33,69 @@
   <!-- Tutorial screen -->
   <div id="tutorial-screen" style="display: none;">
     <div class="tutorial-container">
-      <h2>🎓 Phantom Moves Tutorial</h2>
+      <div class="tutorial-header">
+        <button id="closeTutorial" class="header-btn">✕ Close</button>
+        <h2>🎓 MindChess Tutorial</h2>
+        <div style="width: 80px;"></div> <!-- Spacer to keep title centered -->
+      </div>
       
       <div class="tutorial-navigation">
         <button id="prevPage">◀ Previous</button>
-        <span id="tutorialPage">Page 1 of 5</span>
+        <span id="tutorialPage">Step 1 of 38</span>
         <button id="nextPage">Next ▶</button>
       </div>
 
-      <div class="tutorial-content">
-        <!-- Page 1: Introduction -->
-        <div class="tutorial-page active" data-page="1">
-          <h3>Welcome to Phantom Moves! 👋</h3>
-          <div class="tutorial-text">
-            <p>Phantom Moves is a revolutionary chess game where you can play using <strong>voice commands</strong>! No need to touch the board - just speak your moves and watch them happen.</p>
-            
-            <div class="tutorial-feature">
-              <span class="feature-icon">🎤</span>
-              <div>
-                <strong>Voice Control</strong>
-                <p>Use your microphone to give chess commands in English or Spanish</p>
-              </div>
-            </div>
-
-            <div class="tutorial-feature">
-              <span class="feature-icon">⏱️</span>
-              <div>
-                <strong>Timed Games</strong>
-                <p>Choose from 5, 10, or 15-minute games, or play without time limits</p>
-              </div>
-            </div>
-
-            <div class="tutorial-feature">
-              <span class="feature-icon">🌍</span>
-              <div>
-                <strong>Bilingual Support</strong>
-                <p>Switch between English and Spanish at any time during the game</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Page 2: Basic Commands -->
-        <div class="tutorial-page" data-page="2">
-          <h3>Basic Voice Commands 🗣️</h3>
-          <div class="tutorial-text">
-            <h4>How to Make a Move</h4>
-            <p>To move a piece, use this format:</p>
-            
-            <div class="command-example">
-              <code>"Move [piece] to [square]"</code>
-              <span class="example-text">Example: "Move knight to e4"</span>
-            </div>
-
-            <h4>Chess Pieces You Can Say</h4>
-            <div class="command-grid">
-              <div class="command-item">
-                <span class="piece-symbol">♙</span>
-                <strong>Pawn</strong>
-                <p>English: "pawn"</p>
-                <p>Spanish: "peón"</p>
-              </div>
-              <div class="command-item">
-                <span class="piece-symbol">♜</span>
-                <strong>Rook</strong>
-                <p>English: "rook"</p>
-                <p>Spanish: "torre"</p>
-              </div>
-              <div class="command-item">
-                <span class="piece-symbol">♞</span>
-                <strong>Knight</strong>
-                <p>English: "knight"</p>
-                <p>Spanish: "caballo"</p>
-              </div>
-              <div class="command-item">
-                <span class="piece-symbol">♝</span>
-                <strong>Bishop</strong>
-                <p>English: "bishop"</p>
-                <p>Spanish: "alfil"</p>
-              </div>
-              <div class="command-item">
-                <span class="piece-symbol">♛</span>
-                <strong>Queen</strong>
-                <p>English: "queen"</p>
-                <p>Spanish: "reina/dama"</p>
-              </div>
-              <div class="command-item">
-                <span class="piece-symbol">♚</span>
-                <strong>King</strong>
-                <p>English: "king"</p>
-                <p>Spanish: "rey"</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Page 3: Advanced Commands -->
-        <div class="tutorial-page" data-page="3">
-          <h3>Advanced Commands 🎯</h3>
-          <div class="tutorial-text">
-            <h4>Special Moves</h4>
-            
-            <div class="command-list">
-              <p><strong>🏰 Castling:</strong></p>
-              <div class="command-example">
-                <code>"Castle kingside"</code> or <code>"O-O"</code>
-                <span class="example-text">Spanish: "enroque corto"</span>
-              </div>
-              <div class="command-example">
-                <code>"Castle queenside"</code> or <code>"O-O-O"</code>
-                <span class="example-text">Spanish: "enroque largo"</span>
-              </div>
-
-              <p><strong>📖 Read Moves:</strong></p>
-              <div class="command-example">
-                <code>"Read"</code>
-                <span class="example-text">Spanish: "leer" - Announces all moves made so far</span>
-              </div>
-
-              <p><strong>⏮️ Undo Last Move:</strong></p>
-              <div class="command-example">
-                <code>"Undo"</code>
-                <span class="example-text">Spanish: "deshacer"</span>
-              </div>
-
-              <p><strong>🤝 Offer Draw:</strong></p>
-              <div class="command-example">
-                <code>"Draw"</code>
-                <span class="example-text">Spanish: "tablas" or "empate"</span>
-              </div>
-
-              <p><strong>🏳️ Resign:</strong></p>
-              <div class="command-example">
-                <code>"Resign"</code>
-                <span class="example-text">Spanish: "rendirse"</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Page 4: How to Play -->
-        <div class="tutorial-page" data-page="4">
-          <h3>How to Play 🎮</h3>
-          <div class="tutorial-text">
-            <div class="tutorial-step">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <strong>Select Time Control</strong>
-                <p>Choose your preferred game duration: 5, 10, or 15 minutes per player, or unlimited time.</p>
-              </div>
-            </div>
-
-            <div class="tutorial-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <strong>Start the Game</strong>
-                <p>Click "Start Game" to begin. White moves first.</p>
-              </div>
-            </div>
-
-            <div class="tutorial-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <strong>Activate Voice Recognition</strong>
-                <p>Click the "Speak" button or press the <strong>V</strong> key to start listening.</p>
-              </div>
-            </div>
-
-            <div class="tutorial-step">
-              <div class="step-number">4</div>
-              <div class="step-content">
-                <strong>Speak Your Move</strong>
-                <p>Say your command clearly: "Move pawn to e4"</p>
-              </div>
-            </div>
-
-            <div class="tutorial-step">
-              <div class="step-number">5</div>
-              <div class="step-content">
-                <strong>Alternate Turns</strong>
-                <p>Players take turns speaking their moves. The timer switches automatically.</p>
-              </div>
-            </div>
-
-            <div class="tutorial-tip">
-              <strong>💡 Pro Tip:</strong> You can also drag pieces with your mouse if you prefer traditional play!
-            </div>
-          </div>
-        </div>
-
-        <!-- Page 5: Tips & Tricks -->
-        <div class="tutorial-page" data-page="5">
-          <h3>Tips & Tricks 💡</h3>
-          <div class="tutorial-text">
-            <div class="tip-card">
-              <h4>🎤 Voice Recognition Tips</h4>
-              <ul>
-                <li>Speak clearly and at a moderate pace</li>
-                <li>Use a quiet environment for best results</li>
-                <li>Wait for the "Listening..." indicator before speaking</li>
-                <li>Press <strong>V</strong> key for quick voice activation</li>
-              </ul>
-            </div>
-
-            <div class="tip-card">
-              <h4>⏱️ Timer Management</h4>
-              <ul>
-                <li>The timer turns <span style="color: #F57C00;">orange</span> when you have 30 seconds left</li>
-                <li>The timer turns <span style="color: #D32F2F;">red</span> and pulses when you have 10 seconds left</li>
-                <li>Make your moves quickly when time is running low!</li>
-              </ul>
-            </div>
-
-            <div class="tip-card">
-              <h4>🌍 Language Switching</h4>
-              <ul>
-                <li>Use the language selector to switch between English and Spanish</li>
-                <li>All voice commands and announcements will update automatically</li>
-                <li>You can change language at any time during the game</li>
-              </ul>
-            </div>
-
-            <div class="tip-card">
-              <h4>🎯 Move Validation</h4>
-              <ul>
-                <li>Only legal moves will be executed</li>
-                <li>If a move is invalid, you'll see an error message</li>
-                <li>The game detects check, checkmate, and stalemate automatically</li>
-              </ul>
-            </div>
-
-            <div class="tutorial-tip">
-              <strong>🎉 Ready to Play?</strong> Click "Start Game" below to begin your voice-controlled chess adventure!
-            </div>
-          </div>
-        </div>
+      <div class="tutorial-content" id="tutorial-display-area">
+        <!-- This area will be dynamically populated by script.js -->
       </div>
+      
+      <!-- Hidden source content for the tutorial -->
+      <div id="tutorial-source-content" style="display: none;">
+        <div id="t-1-1"><h3>Welcome to MindChess! 👋</h3></div>
+        <div id="t-1-2"><p>MindChess is a revolutionary chess game where you can play using <strong>voice commands</strong>!</p></div>
+        <div id="t-1-3"><p>No need to touch the board - just speak your moves and watch them happen.</p></div>
+        <div id="f-1-1"><div class="tutorial-feature"><span class="feature-icon">🎤</span><div><strong>Voice Control</strong><p>Use your microphone to give chess commands in English or Spanish.</p></div></div></div>
+        <div id="f-1-2"><div class="tutorial-feature"><span class="feature-icon">⏱️</span><div><strong>Timed Games</strong><p>Choose from 5, 10, or 15-minute games, or play without time limits.</p></div></div></div>
+        <div id="f-1-3"><div class="tutorial-feature"><span class="feature-icon">🌍</span><div><strong>Bilingual Support</strong><p>Switch between English and Spanish at any time during the game.</p></div></div></div>
+        
+        <div id="t-2-1"><h3>Basic Voice Commands 🗣️</h3></div>
+        <div id="t-2-2"><h4>How to Make a Move</h4></div>
+        <div id="t-2-3"><p>To move a piece, use this format:</p></div>
+        <div id="c-2-1"><div class="command-example"><code>"Move [piece] to [square]"</code><span class="example-text">Example: "Move knight to e4"</span></div></div>
+        <div id="t-2-5"><h4>Chess Pieces You Can Say</h4></div>
+        <div id="p-2-1"><div class="command-item"><span class="piece-symbol">♙</span><strong>Pawn</strong><p>English: "pawn"</p><p>Spanish: "peón"</p></div></div>
+        <div id="p-2-2"><div class="command-item"><span class="piece-symbol">♜</span><strong>Rook</strong><p>English: "rook"</p><p>Spanish: "torre"</p></div></div>
+        <div id="p-2-3"><div class="command-item"><span class="piece-symbol">♞</span><strong>Knight</strong><p>English: "knight"</p><p>Spanish: "caballo"</p></div></div>
+        <div id="p-2-4"><div class="command-item"><span class="piece-symbol">♝</span><strong>Bishop</strong><p>English: "bishop"</p><p>Spanish: "alfil"</p></div></div>
+        <div id="p-2-5"><div class="command-item"><span class="piece-symbol">♛</span><strong>Queen</strong><p>English: "queen"</p><p>Spanish: "reina or dama"</p></div></div>
+        <div id="p-2-6"><div class="command-item"><span class="piece-symbol">♚</span><strong>King</strong><p>English: "king"</p><p>Spanish: "rey"</p></div></div>
 
-      <div class="tutorial-footer">
-        <button id="closeTutorial">Close Tutorial</button>
-        <button id="startFromTutorial">Start Game</button>
+        <div id="t-3-1"><h3>Advanced Commands 🎯</h3></div>
+        <div id="t-3-2"><h4>Special Moves</h4></div>
+        <div id="c-3-1"><div class="command-example"><strong>🏰 Castling:</strong><br><code>"Castle kingside"</code> or <code>"O-O"</code><br><span class="example-text">Spanish: "enroque corto"</span></div></div>
+        <div id="c-3-2"><div class="command-example"><strong>🏰 Castling:</strong><br><code>"Castle queenside"</code> or <code>"O-O-O"</code><br><span class="example-text">Spanish: "enroque largo"</span></div></div>
+        <div id="c-3-3"><div class="command-example"><strong>📖 Read Moves:</strong><br><code>"Read"</code><br><span class="example-text">Spanish: "leer" - Announces all moves</span></div></div>
+        <div id="c-3-4"><div class="command-example"><strong>⏮️ Undo Last Move:</strong><br><code>"Undo"</code><br><span class="example-text">Spanish: "deshacer"</span></div></div>
+        <div id="c-3-5"><div class="command-example"><strong>🤝 Offer Draw:</strong><br><code>"Draw"</code><br><span class="example-text">Spanish: "tablas" or "empate"</span></div></div>
+        <div id="c-3-6"><div class="command-example"><strong>🏳️ Resign:</strong><br><code>"Resign"</code><br><span class="example-text">Spanish: "rendirse"</span></div></div>
+
+        <div id="t-4-1"><h3>How to Play 🎮</h3></div>
+        <div id="s-4-1"><div class="tutorial-step"><div class="step-number">1</div><div class="step-content"><strong>Select Time Control</strong><p>Choose 5, 10, or 15 minutes, or unlimited time.</p></div></div></div>
+        <div id="s-4-2"><div class="tutorial-step"><div class="step-number">2</div><div class="step-content"><strong>Start the Game</strong><p>Click "Start Game" to begin. White moves first.</p></div></div></div>
+        <div id="s-4-3"><div class="tutorial-step"><div class="step-number">3</div><div class="step-content"><strong>Activate Voice</strong><p>Click "Speak" or press <strong>V</strong> key to start listening.</p></div></div></div>
+        <div id="s-4-4"><div class="tutorial-step"><div class="step-number">4</div><div class="step-content"><strong>Speak Your Move</strong><p>Say: "Move pawn to e4"</p></div></div></div>
+        <div id="s-4-5"><div class="tutorial-step"><div class="step-number">5</div><div class="step-content"><strong>Alternate Turns</strong><p>The timer switches automatically after each move.</p></div></div></div>
+        <div id="t-4-12"><div class="tutorial-tip"><strong>💡 Pro Tip:</strong> You can also drag pieces with your mouse!</div></div>
+
+        <div id="t-5-1"><h3>Tips & Tricks 💡</h3></div>
+        <div id="tc-5-1"><div class="tip-card"><h4>🎤 Voice Tips</h4><ul><li>Speak clearly at a moderate pace</li><li>Use a quiet environment</li></ul></div></div>
+        <div id="tc-5-2"><div class="tip-card"><h4>⏱️ Timer</h4><ul><li>Timer turns orange at 30s, red at 10s</li></ul></div></div>
+        <div id="tc-5-3"><div class="tip-card"><h4>🌍 Languages</h4><ul><li>Switch between English and Spanish anytime</li></ul></div></div>
+        <div id="tc-5-4"><div class="tip-card"><h4>🎯 Validation</h4><ul><li>Only legal moves will be executed</li></ul></div></div>
+        <div id="t-5-19"><div class="tutorial-tip"><strong>🎉 Ready?</strong> Click Start Game below to begin!</div></div>
       </div>
+    </div>
+  </div>      </div>
     </div>
   </div>
 

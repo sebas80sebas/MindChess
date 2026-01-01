@@ -87,22 +87,81 @@ h1 {
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
+/* Tutorial Highlighting */
+.highlight {
+    background-color: rgba(255, 215, 0, 0.3);
+    border-radius: 4px;
+    padding: 2px 4px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    display: inline-block;
+    color: #FFD700;
+    font-weight: bold;
+}
+
 .tutorial-content {
-    min-height: 500px;
-    max-height: 500px;
-    overflow-y: auto;
-    position: relative;
-    padding: 10px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.tutorial-page {
-    display: none;
-    opacity: 0;
-    animation: fadeInPage 0.5s ease forwards;
+.active-step-slide {
+    animation: slideIn 0.5s ease forwards;
+    width: 100%;
+    max-width: 600px;
 }
 
-.tutorial-page.active {
-    display: block;
+@keyframes slideIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.tutorial-feature, .command-example, .command-item, .tutorial-step, .tip-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #8B4513;
+    margin: 0 auto;
+}
+
+
+.tutorial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(139, 69, 19, 0.2);
+    border-bottom: 2px solid #8B4513;
+    margin-bottom: 10px;
+    border-radius: 12px 12px 0 0;
+}
+
+.tutorial-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #FFF8DC;
+}
+
+.header-btn {
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    margin: 0 !important;
+    text-transform: none !important;
+}
+
+#closeTutorial {
+    background: linear-gradient(135deg, #757575 0%, #424242 100%) !important;
+}
+
+#startFromTutorial {
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%) !important;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 #startButton,
