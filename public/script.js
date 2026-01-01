@@ -632,21 +632,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalPages = 5;
     let tutorialSpeechSynth = window.speechSynthesis;
 
-    // Dynamic Tutorial logic - Grouped into 13 meaningful steps
+    // Dynamic Tutorial logic - Standardized 13 steps
     const tutorialSteps = [
-        { id: "step-1", sourceIds: ["t-1-1", "t-1-2", "t-1-3"], text: "Welcome to MindChess! This is a revolutionary chess game where you can play using voice commands. No need to touch the board - just speak your moves and watch them happen." },
-        { id: "step-2", sourceIds: ["f-1-1"], text: "Voice Control allows you to use your microphone to give chess commands in English or Spanish." },
-        { id: "step-3", sourceIds: ["f-1-2"], text: "Choose from 5, 10, or 15-minute games, or play without time limits." },
-        { id: "step-4", sourceIds: ["f-1-3"], text: "Switch between English and Spanish at any time during the game." },
-        { id: "step-5", sourceIds: ["t-2-1", "t-2-2", "t-2-3", "c-2-1"], text: "To make a move, say the piece name and the destination square. For example: Move knight to e4." },
-        { id: "step-6", sourceIds: ["t-2-5", "p-2-1", "p-2-2", "p-2-3", "p-2-4", "p-2-5", "p-2-6"], text: "You can say the names of all pieces in English or Spanish, like Pawn, Rook, Knight, Bishop, Queen, or King." },
-        { id: "step-7", sourceIds: ["t-3-1", "t-3-2", "c-3-1", "c-3-2"], text: "For special moves like castling, you can say: Castle kingside or Castle queenside." },
-        { id: "step-8", sourceIds: ["c-3-3", "c-3-4"], text: "Use the Read command to hear all moves made so far, or Undo to take back your last move." },
-        { id: "step-9", sourceIds: ["c-3-5", "c-3-6"], text: "You can also offer a Draw or Resign from the current game using voice commands." },
-        { id: "step-10", sourceIds: ["t-4-1", "s-4-1", "s-4-2", "s-4-3"], text: "To play: Select your time control, start the game, and activate voice recognition with the Speak button or V key." },
-        { id: "step-11", sourceIds: ["s-4-4", "s-4-5", "t-4-12"], text: "Speak your moves clearly. The timer will switch automatically. You can also drag pieces with your mouse." },
-        { id: "step-12", sourceIds: ["t-5-1", "tc-5-1", "tc-5-2", "tc-5-3", "tc-5-4"], text: "Speak at a moderate pace in a quiet environment. The game handles validation and time alerts automatically." },
-        { id: "step-13", sourceIds: ["t-5-19"], text: "You are now ready to play! Click Close and then Start Game to begin your adventure." }
+        { id: "step-1", text: "Welcome to MindChess! This is a revolutionary chess game where you can play using voice commands. No need to touch the board - just speak your moves and watch them happen." },
+        { id: "step-2", text: "Voice Control allows you to use your microphone to give chess commands in English or Spanish." },
+        { id: "step-3", text: "Choose from 5, 10, or 15-minute games, or play without time limits." },
+        { id: "step-4", text: "Switch between English and Spanish at any time during the game." },
+        { id: "step-5", text: "To make a move, say the piece name and the destination square. For example: Move knight to e4." },
+        { id: "step-6", text: "You can say the names of all pieces in English or Spanish, like Pawn, Rook, Knight, Bishop, Queen, or King." },
+        { id: "step-7", text: "For special moves like castling, you can say: Castle kingside or Castle queenside. In Spanish: Enroque corto or Enroque largo." },
+        { id: "step-8", text: "Use the Read command to hear all moves made so far, or Undo to take back your last move." },
+        { id: "step-9", text: "You can also offer a Draw or Resign from the current game using voice commands." },
+        { id: "step-10", text: "To play: Select your time control, start the game, and activate voice recognition with the Speak button or V key." },
+        { id: "step-11", text: "Speak your moves clearly. The timer will switch automatically. You can also drag pieces with your mouse!" },
+        { id: "step-12", text: "Speak at a moderate pace in a quiet environment. The game handles validation and time alerts automatically." },
+        { id: "step-13", text: "You are now ready to play! Click Close and Start Game to begin your adventure!" }
     ];
 
     let currentStepIndex = 0;
@@ -665,16 +665,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Clear display area and inject new content
         displayArea.innerHTML = '';
         
-        step.sourceIds.forEach(id => {
-            const contentSource = document.getElementById(id);
-            if (contentSource) {
-                const clone = contentSource.cloneNode(true);
-                clone.style.display = 'block';
-                displayArea.appendChild(clone);
-            }
-        });
-
-        displayArea.firstElementChild.classList.add('active-step-slide');
+        const contentSource = document.getElementById(step.id);
+        if (contentSource) {
+            const clone = contentSource.cloneNode(true);
+            clone.style.display = 'block';
+            clone.firstElementChild.classList.add('active-step-slide');
+            displayArea.appendChild(clone);
+        }
 
         // Speak current step
         tutorialSpeechSynth.cancel();
