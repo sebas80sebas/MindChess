@@ -48,6 +48,7 @@ Traditional digital chess platforms rely heavily on visual interaction, creating
 ### Core Functionality
 - ✅ **100% Voice-Controlled Interface** - Play chess using natural voice commands
 - ✅ **Intelligent Text-to-Speech** - Clear audio feedback for every move and game state
+- ✅ **Computer Opponent** - Play against an AI with adjustable time controls
 - ✅ **Complete Chess Rules** - Full support for castling, en passant, promotion, check, and checkmate
 - ✅ **Move History Audio** - Listen to all previous moves on demand
 - ✅ **Draw & Resign Options** - Voice commands for game conclusion

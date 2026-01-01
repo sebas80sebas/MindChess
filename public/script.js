@@ -13,14 +13,176 @@ const timerBlack = document.getElementById('timer-black');
 const timeDisplayWhite = timerWhite.querySelector('.time-display');
 const timeDisplayBlack = timerBlack.querySelector('.time-display');
 
-// Timer variables
+// Game state variables
 let whiteTime = 600;
 let blackTime = 600;
 let selectedTime = 600;
 let timerInterval = null;
 let isTimerActive = false;
+let isVsComputer = false;
+let computerColor = 'b'; // Computer is Black by default
 
-// Initialize Chess.js
+// AI Evaluation Constants
+const weights = { p: 100, n: 320, b: 330, r: 500, q: 900, k: 20000 };
+const pst_w = {
+    p: [
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [50, 50, 50, 50, 50, 50, 50, 50],
+        [10, 10, 20, 30, 30, 20, 10, 10],
+        [5,  5, 10, 25, 25, 10,  5,  5],
+        [0,  0,  0, 20, 20,  0,  0,  0],
+        [5, -5,-10,  0,  0,-10, -5,  5],
+        [5, 10, 10,-20,-20, 10, 10,  5],
+        [0,  0,  0,  0,  0,  0,  0,  0]
+    ],
+    n: [
+        [-50,-40,-30,-30,-30,-30,-40,-50],
+        [-40,-20,  0,  0,  0,  0,-20,-40],
+        [-30,  0, 10, 15, 15, 10,  0,-30],
+        [-30,  5, 15, 20, 20, 15,  5,-30],
+        [-30,  0, 15, 20, 20, 15,  0,-30],
+        [-30,  5, 10, 15, 15, 10,  5,-30],
+        [-40,-20,  0,  5,  5,  0,-20,-40],
+        [-50,-40,-30,-30,-30,-30,-40,-50]
+    ],
+    b: [
+        [-20,-10,-10,-10,-10,-10,-10,-20],
+        [-10,  0,  0,  0,  0,  0,  0,-10],
+        [-10,  0,  5, 10, 10,  5,  0,-10],
+        [-10,  5,  5, 10, 10,  5,  5,-10],
+        [-10,  0, 10, 10, 10, 10,  0,-10],
+        [-10, 10, 10, 10, 10, 10, 10,-10],
+        [-10,  5,  0,  0,  0,  0,  5,-10],
+        [-20,-10,-10,-10,-10,-10,-10,-20]
+    ],
+    r: [
+        [0,  0,  0,  0,  0,  0,  0,  0],
+        [5, 10, 10, 10, 10, 10, 10,  5],
+        [-5,  0,  0,  0,  0,  0,  0, -5],
+        [-5,  0,  0,  0,  0,  0,  0, -5],
+        [-5,  0,  0,  0,  0,  0,  0, -5],
+        [-5,  0,  0,  0,  0,  0,  0, -5],
+        [-5,  0,  0,  0,  0,  0,  0, -5],
+        [0,  0,  0,  5,  5,  0,  0,  0]
+    ],
+    q: [
+        [-20,-10,-10, -5, -5,-10,-10,-20],
+        [-10,  0,  0,  0,  0,  0,  0,-10],
+        [-10,  0,  5,  5,  5,  5,  0,-10],
+        [-5,  0,  5,  5,  5,  5,  0, -5],
+        [0,  0,  5,  5,  5,  5,  0, -5],
+        [-10,  5,  5,  5,  5,  5,  0,-10],
+        [-10,  0,  5,  0,  0,  0,  0,-10],
+        [-20,-10,-10, -5, -5,-10,-10,-20]
+    ],
+    k: [
+        [-30,-40,-40,-50,-50,-40,-40,-30],
+        [-30,-40,-40,-50,-50,-40,-40,-30],
+        [-30,-40,-40,-50,-50,-40,-40,-30],
+        [-30,-40,-40,-50,-50,-40,-40,-30],
+        [-20,-30,-30,-40,-40,-30,-30,-20],
+        [-10,-20,-20,-20,-20,-20,-20,-10],
+        [20, 20,  0,  0,  0,  0, 20, 20],
+        [20, 30, 10,  0,  0, 10, 30, 20]
+    ]
+};
+
+// Mirror PST for black
+const pst_b = {};
+for (const piece in pst_w) {
+    pst_b[piece] = [...pst_w[piece]].reverse();
+}
+
+function evaluateBoard(game) {
+    let totalEvaluation = 0;
+    const board = game.board();
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            totalEvaluation += getPieceValue(board[i][j], i, j);
+        }
+    }
+    return totalEvaluation;
+}
+
+function getPieceValue(piece, x, y) {
+    if (piece === null) return 0;
+    const absoluteValue = weights[piece.type] + (piece.color === 'w' ? pst_w[piece.type][x][y] : pst_b[piece.type][x][y]);
+    return piece.color === 'w' ? absoluteValue : -absoluteValue;
+}
+
+function minimax(game, depth, alpha, beta, isMaximizingPlayer) {
+    if (depth === 0) return -evaluateBoard(game);
+
+    const moves = game.moves();
+    if (isMaximizingPlayer) {
+        let bestEval = -99999;
+        for (const move of moves) {
+            game.move(move);
+            bestEval = Math.max(bestEval, minimax(game, depth - 1, alpha, beta, !isMaximizingPlayer));
+            game.undo();
+            alpha = Math.max(alpha, bestEval);
+            if (beta <= alpha) return bestEval;
+        }
+        return bestEval;
+    } else {
+        let bestEval = 99999;
+        for (const move of moves) {
+            game.move(move);
+            bestEval = Math.min(bestEval, minimax(game, depth - 1, alpha, beta, !isMaximizingPlayer));
+            game.undo();
+            beta = Math.min(beta, bestEval);
+            if (beta <= alpha) return bestEval;
+        }
+        return bestEval;
+    }
+}
+
+function getBestMove(game) {
+    const moves = game.moves();
+    let bestMove = null;
+    let bestValue = -99999;
+
+    for (const move of moves) {
+        game.move(move);
+        const boardValue = minimax(game, 2, -100000, 100000, false);
+        game.undo();
+        if (boardValue > bestValue) {
+            bestValue = boardValue;
+            bestMove = move;
+        }
+    }
+    return bestMove;
+}
+
+function makeComputerMove() {
+    if (game.isGameOver()) return;
+    
+    // Add a small delay for realism
+    setTimeout(() => {
+        const move = getBestMove(game);
+        if (move) {
+            const result = game.move(move);
+            cg.set({
+                fen: game.fen(),
+                turnColor: game.turn() === "w" ? "white" : "black",
+                movable: {
+                    color: game.turn() === "w" ? "white" : "black",
+                    dests: getValidMoves()
+                }
+            });
+            
+            switchTimerActive();
+            updateStatus();
+            updateMoveList();
+            updateMoveMessages(result);
+            announceMove(result);
+            
+            console.log("[DEBUG] AI Move:", result.san);
+        }
+    }, 500);
+}
+
+// Timer functions
 const game = new Chess();
 
 // Initialize Chessground
@@ -268,6 +430,11 @@ function handleMove(orig, dest) {
             startTimer();
         }
         
+        // Trigger computer move if applicable
+        if (isVsComputer && game.turn() === computerColor && !game.isGameOver()) {
+            makeComputerMove();
+        }
+        
         console.log("[DEBUG] New FEN:", game.fen());
     } else {
         cg.set({ fen: game.fen() });
@@ -503,6 +670,11 @@ function processVoiceCommand(command) {
                 if (!isTimerActive && selectedTime > 0) {
                     startTimer();
                 }
+
+                // Trigger computer move if applicable
+                if (isVsComputer && game.turn() === computerColor && !game.isGameOver()) {
+                    makeComputerMove();
+                }
             } else {
                 const errorMsg = currentLanguage === 'en-US' ? 
                     "Castling not allowed" :
@@ -530,6 +702,11 @@ function processVoiceCommand(command) {
         else if (normalized.includes('undo')) {
             const undone = game.undo();
             if (undone) {
+                // If it was vs Computer, undo twice so we get back to the player's turn
+                if (isVsComputer && undone.color === computerColor) {
+                    game.undo();
+                }
+
                 cg.set({
                     fen: game.fen(),
                     turnColor: game.turn() === "w" ? "white" : "black",
@@ -540,8 +717,8 @@ function processVoiceCommand(command) {
                 });
                 switchTimerActive();
                 const undoMsg = currentLanguage === 'en-US' ? 
-                    `Move undone: ${undone.san}` :
-                    `Movimiento deshecho: ${undone.san}`;
+                    `Move undone` :
+                    `Movimiento deshecho`;
                 announceState({ color: undone.color, san: undoMsg });
             } else {
                 const errorMsg = currentLanguage === 'en-US' ? 
@@ -591,7 +768,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const startScreen = document.getElementById("start-screen");
     const container = document.getElementById("container");
     const timeOptions = document.querySelectorAll('.time-option');
+    const oppOptions = document.querySelectorAll('.opp-option');
     
+    // Opponent selection
+    oppOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            oppOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            isVsComputer = option.dataset.opp === 'computer';
+        });
+    });
+
     // Time selection
     timeOptions.forEach(option => {
         option.addEventListener('click', () => {
@@ -603,8 +790,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     
-    // Default selection (10 minutes)
+    // Default selection (10 minutes and Human)
     timeOptions[1].classList.add('selected');
+    oppOptions[0].classList.add('selected');
   
     startButton.addEventListener('click', () => {
         startScreen.style.display = "none";

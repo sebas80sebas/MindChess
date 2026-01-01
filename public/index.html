@@ -17,8 +17,15 @@
   <div id="start-screen">
     <img src="icon.png" alt="Logo" style="max-width: 225px;">
 
+    <!-- Opponent selection -->
+    <div id="opponent-selector" class="selector-group">
+      <h3>Select Opponent</h3>
+      <button class="opp-option selected" data-opp="human">👤 vs Human</button>
+      <button class="opp-option" data-opp="computer">🤖 vs Computer</button>
+    </div>
+
     <!-- Time selection -->
-    <div id="time-selector">
+    <div id="time-selector" class="selector-group">
       <h3>Select Game Time</h3>
       <button class="time-option" data-time="300">5 Minutes</button>
       <button class="time-option" data-time="600">10 Minutes</button>

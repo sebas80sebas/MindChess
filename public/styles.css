@@ -47,8 +47,8 @@ h1 {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
 }
 
-/* Time selector */
-#time-selector {
+/* Selector groups */
+.selector-group {
     margin: 20px 0;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
@@ -56,13 +56,13 @@ h1 {
     backdrop-filter: blur(10px);
 }
 
-#time-selector h3 {
+.selector-group h3 {
     color: #FFF8DC;
     margin-bottom: 15px;
     font-size: 1.3em;
 }
 
-.time-option {
+.time-option, .opp-option {
     padding: 12px 30px;
     font-size: 16px;
     margin: 5px;
@@ -75,13 +75,13 @@ h1 {
     transition: all 0.3s ease;
 }
 
-.time-option:hover {
+.time-option:hover, .opp-option:hover {
     background: linear-gradient(135deg, #6D4C41 0%, #5D4037 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.time-option.selected {
+.time-option.selected, .opp-option.selected {
     background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
     border-color: #FFD700;
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
