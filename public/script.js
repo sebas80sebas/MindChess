@@ -699,40 +699,10 @@ function processVoiceCommand(command) {
             announceState({ color: game.turn(), san: drawMsg });
         } 
         else if (normalized.includes('undo')) {
-            const undone = game.undo();
-            if (undone) {
-                // If it was vs Computer, undo twice so we get back to the player's turn
-                if (isVsComputer && undone.color === computerColor) {
-                    game.undo();
-                }
-
-                cg.set({
-                    fen: game.fen(),
-                    turnColor: game.turn() === "w" ? "white" : "black",
-                    movable: {
-                        color: game.turn() === "w" ? "white" : "black",
-                        dests: getValidMoves()
-                    }
-                });
-                switchTimerActive();
-                const undoMsg = currentLanguage === 'en-US' ? 
-                    `Move undone` :
-                    `Movimiento deshecho`;
-                announceState({ color: undone.color, san: undoMsg });
-            } else {
-                const errorMsg = currentLanguage === 'en-US' ? 
-                    "No moves to undo" :
-                    "No hay movimientos para deshacer";
-                throw new Error(errorMsg);
-            }
+            handleUndoMove();
         }
         else if (normalized.includes('read')) {
-            const history = game.history();
-            const movesText = history.length ? history.join(', ') : (currentLanguage === 'en-US' ? 'No moves' : 'Sin movimientos');
-            const readMsg = currentLanguage === 'en-US' ? 
-                `these are the moves made: ${movesText}` :
-                `estos son los movimientos realizados: ${movesText}`;
-            announceState({ color: game.turn(), san: readMsg });
+            handleReadMoves();
         }
         else if (normalized.includes('repeat')) {
             handleRepeatLastMove();
@@ -948,8 +918,51 @@ cancelSurrender.addEventListener("click", () => {
     surrenderConfirm.style.display = "none";
 });
 
+function handleReadMoves() {
+    const history = game.history();
+    const movesText = history.length ? history.join(', ') : (currentLanguage === 'en-US' ? 'No moves' : 'Sin movimientos');
+    const readMsg = currentLanguage === 'en-US' ? 
+        `these are the moves made: ${movesText}` :
+        `estos son los movimientos realizados: ${movesText}`;
+    announceState({ color: game.turn(), san: readMsg });
+}
+
+function handleUndoMove() {
+    const undone = game.undo();
+    if (undone) {
+        // If it was vs Computer, undo twice so we get back to the player's turn
+        if (isVsComputer && undone.color === computerColor) {
+            game.undo();
+        }
+
+        cg.set({
+            fen: game.fen(),
+            turnColor: game.turn() === "w" ? "white" : "black",
+            movable: {
+                color: game.turn() === "w" ? "white" : "black",
+                dests: getValidMoves()
+            }
+        });
+        switchTimerActive();
+        const undoMsg = currentLanguage === 'en-US' ? 
+            `Move undone` :
+            `Movimiento deshecho`;
+        announceState({ color: undone.color, san: undoMsg });
+    } else {
+        const errorMsg = currentLanguage === 'en-US' ? 
+            "No moves to undo" :
+            "No hay movimientos para deshacer";
+        
+        // If triggered by button, we use alert or moveMessages
+        moveMessages.innerHTML += `<p style="color: red;">${errorMsg}</p>`;
+        announceState({ color: game.turn(), san: errorMsg });
+    }
+}
+
 // Repeat button
 const repeatButton = document.getElementById("repeatButton");
+const readButton = document.getElementById("readButton");
+const undoButton = document.getElementById("undoButton");
 
 function handleRepeatLastMove() {
     const history = game.history({ verbose: true });
@@ -964,6 +977,14 @@ function handleRepeatLastMove() {
 
 repeatButton.addEventListener("click", () => {
     handleRepeatLastMove();
+});
+
+readButton.addEventListener("click", () => {
+    handleReadMoves();
+});
+
+undoButton.addEventListener("click", () => {
+    handleUndoMove();
 });
 
 // Exit button
