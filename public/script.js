@@ -944,6 +944,7 @@ function handleUndoMove() {
             }
         });
         switchTimerActive();
+        updateMoveList();
         const undoMsg = currentLanguage === 'en-US' ? 
             `Move undone` :
             `Movimiento deshecho`;

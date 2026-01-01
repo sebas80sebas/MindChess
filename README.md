@@ -48,11 +48,12 @@ Traditional digital chess platforms rely heavily on visual interaction, creating
 ### Core Functionality
 - ✅ **100% Voice-Controlled Interface** - Play chess using natural voice commands
 - ✅ **Intelligent Text-to-Speech** - Clear audio feedback for every move and game state
-- ✅ **Computer Opponent** - Play against an AI with adjustable time controls
+- ✅ **Computer Opponent** - Practice against an AI engine with Alpha-Beta pruning
 - ✅ **Complete Chess Rules** - Full support for castling, en passant, promotion, check, and checkmate
 - ✅ **Move History Audio** - Listen to all previous moves on demand
+- ✅ **Dedicated Control Buttons** - Repeat, Read, and Undo buttons for quick access
 - ✅ **Draw & Resign Options** - Voice commands for game conclusion
-- ✅ **Undo Functionality** - Take back moves with voice commands
+- ✅ **Undo Functionality** - Take back moves with voice commands or buttons
 
 ### User Experience
 - 🎨 **Clean, Minimal Interface** - Visual board for sighted spectators and assistants
@@ -224,6 +225,7 @@ const PORT = 4001; // Change to any available port
 | `draw` | Offer a draw to opponent |
 | `resign` | Resign from the current game |
 | `read` | Listen to all moves made in the game |
+| `repeat` | Hear the last move made again |
 | `undo` | Undo the last move |
 
 ### Keyboard Shortcuts
@@ -243,6 +245,8 @@ const PORT = 4001; // Change to any available port
 
 2. **Welcome screen**
    - You'll see the MindChess welcome screen
+   - **Select Opponent**: Choose between "👤 vs Human" or "🤖 vs Computer"
+   - **Select Time**: Choose your game duration
    - Click "Start Game" button
 
 3. **Board setup**
@@ -264,12 +268,15 @@ const PORT = 4001; // Change to any available port
 3. **Hear the confirmation**
    - The game will announce: "Player 1 made the move e4"
    - The board updates automatically
-   - Voice recognition reactivates for the next move
+   - Voice recognition reactivates for the next move (if playing vs Human)
+   - If playing vs Computer, the AI will automatically calculate and announce its move
 
-4. **Continue playing**
-   - Alternate between players
-   - Each move is announced audibly
-   - Game states (check, checkmate) are announced
+4. **Game Controls**
+   - **Repeat Move**: Hear the last move again
+   - **Read Moves**: Listen to all moves made in the game so far
+   - **Undo Move**: Take back the last move (undoes two moves if vs Computer)
+   - **Resign**: Forfeit the game
+   - **Request Draw**: Offer a draw to the opponent
 
 ### Game Flow
 
