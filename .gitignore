@@ -52,5 +52,8 @@ coverage/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Gemini
 GEMINI.md
 IDEAS.md
+PRESENTATION_SCRIPT.md
