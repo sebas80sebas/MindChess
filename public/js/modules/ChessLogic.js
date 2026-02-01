@@ -1,9 +1,13 @@
 import { Chess } from "/chess.js";
+import EngineService from "./EngineService.js";
 
 export default class ChessLogic {
     constructor() {
         this.game = new Chess();
-        this.depth = 2; // Default AI depth
+        this.depth = 2; // Default AI depth for local fallback
+        
+        // Stockfish Integration
+        this.engine = new EngineService();
         
         // AI Evaluation Constants (moved from original script)
         this.weights = { p: 100, n: 320, b: 330, r: 500, q: 900, k: 20000 };
@@ -74,6 +78,15 @@ export default class ChessLogic {
         for (const piece in this.pst_w) {
             this.pst_b[piece] = [...this.pst_w[piece]].reverse();
         }
+    }
+
+    setDifficulty(level) {
+        this.engine.setDifficulty(level);
+    }
+
+    getBestMoveAsync(callback) {
+        this.engine.onBestMove = callback;
+        this.engine.getBestMove(this.game.fen());
     }
 
     reset() {

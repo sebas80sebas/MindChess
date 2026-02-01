@@ -81,13 +81,12 @@ export default class GameController {
     makeComputerMove() {
         if (this.chess.isGameOver()) return;
 
-        setTimeout(() => {
-            const move = this.chess.getBestMove();
-            if (move) {
-                const result = this.chess.makeMove(move);
+        this.chess.getBestMoveAsync((bestMove) => {
+            if (bestMove) {
+                const result = this.chess.makeMove(bestMove);
                 this._onMoveMade(result);
             }
-        }, 1000);
+        });
     }
 
     _onMoveMade(move) {
