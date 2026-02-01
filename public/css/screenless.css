@@ -1,0 +1,55 @@
+/* Additions for Screenless Mode */
+
+/* Mode selector buttons in Start Screen */
+.mode-option {
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    background: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.mode-option.selected {
+    background: #4a90e2;
+    color: white;
+    border-color: #357abd;
+}
+
+/* Screenless Display Area */
+#screenless-display {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px; /* Match typical board height */
+    background: #1a1a1a;
+    color: #ffffff;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#last-move-large {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffd700; /* Gold */
+}
+
+#game-status-large {
+    font-size: 2rem;
+    color: #cccccc;
+}
+
+/* High Contrast adjustments for Screenless Mode if needed globally */
+.screenless-active #board {
+    display: none !important;
+}
+
+.screenless-active #screenless-display {
+    display: flex !important;
+}

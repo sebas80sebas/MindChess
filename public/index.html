@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/chessground.css" />
   <link rel="stylesheet" href="css/chessgroundbase.css" />
   <link rel="stylesheet" href="css/chessgroundbrown.css" />
+  <link rel="stylesheet" href="css/screenless.css" />
   <link rel="icon" type="image/png" href="favicon.png" />
 </head>
 <body>
@@ -22,8 +23,8 @@
       <!-- Opponent selector -->
       <div id="opponent-selector" class="selector-group">
         <h3>Select Opponent</h3>
-        <button class="opp-option selected" data-opp="human">👤 vs Human</button>
-        <button class="opp-option" data-opp="computer">🤖 vs Computer</button>
+        <button class="opp-option selected" data-opp="human">Human vs Human</button>
+        <button class="opp-option" data-opp="computer">Human vs Computer</button>
       </div>
 
       <!-- Time selection -->
@@ -33,6 +34,13 @@
         <button class="time-option" data-time="600">10 Minutes</button>
         <button class="time-option" data-time="900">15 Minutes</button>
         <button class="time-option" data-time="0">No Limit</button>
+      </div>
+
+      <!-- Visual Mode selection -->
+      <div id="mode-selector" class="selector-group">
+        <h3>Visual Mode</h3>
+        <button class="mode-option selected" data-mode="normal">Board</button>
+        <button class="mode-option" data-mode="screenless">Screenless (Text Only)</button>
       </div>
     </div>
 
@@ -217,6 +225,12 @@
     
     <div id="board" class="cg-board"></div>
     
+    <!-- Large Text Display for Screenless Mode -->
+    <div id="screenless-display" style="display: none;">
+        <div id="last-move-large">Start Game</div>
+        <div id="game-status-large">Waiting...</div>
+    </div>
+
     <!-- Timer for White (bottom) -->
     <div id="timer-white" class="timer timer-active">
       <span class="player-label">White</span>

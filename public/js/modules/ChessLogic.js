@@ -216,4 +216,39 @@ export default class ChessLogic {
         const absoluteValue = this.weights[piece.type] + (piece.color === 'w' ? this.pst_w[piece.type][x][y] : this.pst_b[piece.type][x][y]);
         return piece.color === 'w' ? absoluteValue : -absoluteValue;
     }
+
+    // --- Analysis Helpers for Accessibility ---
+
+    getPieceLocations(color) {
+        const pieces = [];
+        this.game.board().forEach((row, y) => {
+            row.forEach((piece, x) => {
+                if (piece && piece.color === color) {
+                    pieces.push({
+                        type: piece.type,
+                        square: String.fromCharCode(97 + x) + (8 - y)
+                    });
+                }
+            });
+        });
+        return pieces;
+    }
+
+    getMaterialDifference() {
+        // Simple material count (ignoring position)
+        const values = { p: 1, n: 3, b: 3, r: 5, q: 9, k: 0 };
+        let white = 0;
+        let black = 0;
+        
+        this.game.board().forEach(row => {
+            row.forEach(piece => {
+                if (piece) {
+                    if (piece.color === 'w') white += values[piece.type];
+                    else black += values[piece.type];
+                }
+            });
+        });
+        
+        return { white, black, diff: white - black };
+    }
 }

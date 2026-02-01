@@ -107,6 +107,10 @@ export default class GameController {
             (move.color === "w" ? "Jugador 1" : "Jugador 2");
         const madeMove = this.currentLanguage === 'en-US' ? "made the move" : "hizo el movimiento";
         this.ui.addMoveMessage(`${player} ${madeMove} ${move.san}`);
+
+        // Update Large Display
+        const moveText = `${player}: ${move.san}`;
+        this.ui.updateLastMoveLarge(moveText);
     }
 
     _checkGameStatus() {
@@ -300,10 +304,36 @@ export default class GameController {
             else if (normalized.includes('draw')) {
                 this.requestDraw();
             }
+            // Screenless Mode Commands
+            else if (normalized.includes('position') || normalized.includes('pieces')) {
+                this.handlePositionQuery();
+            }
+            else if (normalized.includes('status')) {
+                this._checkGameStatus(); // Re-announce status
+            }
         } catch (e) {
             console.error(e);
             this.accessibility.announceState("Error");
         }
+    }
+
+    handlePositionQuery() {
+        // Describe pieces for the current turn's player? Or both?
+        // Usually, a player asks "Where are my pieces?".
+        // Let's default to the current turn's color pieces for now, or maybe describe all if asked specifically.
+        // For simplicity: "Position" -> describe current turn's pieces. 
+        // We could expand grammar later.
+        
+        const turn = this.chess.getTurn();
+        const pieces = this.chess.getPieceLocations(turn);
+        
+        const header = this.currentLanguage === 'en-US' ? 
+            (turn === 'w' ? "White pieces: " : "Black pieces: ") :
+            (turn === 'w' ? "Piezas blancas: " : "Piezas negras: ");
+            
+        this.accessibility.announceState(header);
+        // Small delay to let header finish? The speech engine queues, so it's fine.
+        this.accessibility.describePosition(pieces);
     }
 
     _parseMoveCommand(parts) {
@@ -366,6 +396,10 @@ export default class GameController {
             const selectedOppEl = document.querySelector('.opp-option.selected');
             this.isVsComputer = selectedOppEl && selectedOppEl.dataset.opp === 'computer';
 
+            const selectedModeEl = document.querySelector('.mode-option.selected');
+            const isScreenless = selectedModeEl && selectedModeEl.dataset.mode === 'screenless';
+            this.ui.setScreenlessMode(isScreenless);
+
             this.timer.setDuration(selectedTime);
             
             document.getElementById("start-screen").style.display = "none";
@@ -405,6 +439,13 @@ export default class GameController {
             });
         });
 
+        document.querySelectorAll('.mode-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                document.querySelectorAll('.mode-option').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+            });
+        });
+
         document.querySelectorAll('.time-option').forEach(opt => {
             opt.addEventListener('click', () => {
                 document.querySelectorAll('.time-option').forEach(o => o.classList.remove('selected'));
@@ -433,7 +474,10 @@ export default class GameController {
             'enroque corto': 'O-O', 'enroque largo': 'O-O-O',
             'jaque': '+', 'jaque mate': '#', 'deshacer': 'undo', 'leer': 'read',
             'rendirse': 'resignation', 'tablas': 'draw', 'empate': 'draw',
-            'repeat': 'repeat', 'repetir': 'repeat'
+            'repeat': 'repeat', 'repetir': 'repeat',
+            'position': 'position', 'posicion': 'position', 'posición': 'position',
+            'pieces': 'pieces', 'piezas': 'pieces',
+            'status': 'status', 'estado': 'status', 'situacion': 'status', 'situación': 'status'
         };
     }
 }

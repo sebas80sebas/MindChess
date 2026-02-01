@@ -38,6 +38,20 @@ export default class UIController {
         });
     }
 
+    setScreenlessMode(enabled) {
+        const boardContainer = document.getElementById('board-container');
+        if (enabled) {
+            boardContainer.classList.add('screenless-active');
+        } else {
+            boardContainer.classList.remove('screenless-active');
+        }
+    }
+
+    updateLastMoveLarge(text) {
+        const el = document.getElementById('last-move-large');
+        if (el) el.textContent = text;
+    }
+
     updateBoard(fen, validMoves, turnColor) {
         if (!this.cg) return;
         this.cg.set({
@@ -88,6 +102,9 @@ export default class UIController {
 
     updateStatus(message) {
         this.statusElement.innerText = message;
+        // Also update large status if in screenless mode
+        const largeStatus = document.getElementById('game-status-large');
+        if (largeStatus) largeStatus.textContent = message;
     }
 
     updateMoveList(history) {
