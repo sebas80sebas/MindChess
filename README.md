@@ -372,29 +372,6 @@ MindChess follows these core principles:
 
 ---
 
-## 🏆 Hackathon Submission
-
-This project was developed to demonstrate the power of **accessible design** and **inclusive technology** in gaming.
-
-### Innovation Highlights
-
-🔹 **Novel Approach** - First fully voice-controlled web chess application  
-🔹 **Zero Dependencies on Vision** - Complete audio-only experience  
-🔹 **Natural Language Processing** - Intuitive move command interpretation  
-🔹 **Real-Time Feedback** - Immediate audio confirmation system  
-🔹 **Browser-Native** - No installation, no platform restrictions  
-🔹 **Open Source** - Available for community improvement and adaptation  
-
-### Technical Achievements
-
-- ✅ Seamless Web Speech API integration
-- ✅ Robust chess move validation and parsing
-- ✅ State management for blind users
-- ✅ Responsive, mobile-friendly design
-- ✅ Error handling with voice feedback
-
----
-
 ## 🤝 Contributing
 
 We welcome contributions from the community! Whether you're fixing bugs, adding features, or improving documentation, your help is appreciated.
@@ -448,7 +425,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2025-2026 — Iván Sebastián Loor Weir
+Copyright (c) 2026 — Iván Sebastián Loor Weir
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -476,7 +453,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 - 📧 Email: [sebas80sebas@gmail.com]
 - 🐙 GitHub: [@sebas80sebas](https://github.com/sebas80sebas)
-- 🔗 LinkedIn: [My LinkedIn](https://www.linkedin.com/in/iv%C3%A1n-sebasti%C3%A1n-loor-weir-386305271)
+- 🔗 LinkedIn: [My LinkedIn](https://www.linkedin.com/in/ivansebastianloorweir/)
 
 **Project Repository:** [https://github.com/sebas80sebas/MindChess](https://github.com/sebas80sebas/MindChess)
 
